@@ -7,29 +7,17 @@ require_once 'inc/header.inc.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    echo 'submit check ok<br>';
-
     require_once 'inc/dbc.inc.php';
 
     $error = 0;
-
-    echo 'db connection established<br>';
 
     // Check email
 
     $email = trim($_POST['email']);
 
-    echo 'email trimmed<br>';
-
-    echo strlen($email);
-
     if (strlen($email) > 5) {
 
-        echo 'email strlen ok<br>';
-
         if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-
-            echo "$email sanitized<br>";
 
             // Check if email is already in db 
 
@@ -39,11 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             ]);
             $results = $stmt->fetchAll();
 
-            echo 'select query executed<br>';
-
             if (empty($results)) {
-
-                echo "no result for select query<br>";
 
                 // Check password
 
@@ -51,30 +35,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 if (strlen($password) > 9) {
 
-                    echo 'password length ok<br>';
-
                     if (filter_var($password, FILTER_VALIDATE_REGEXP, ["options" => ["regexp" => "/.{6,25}/"]])) {
 
-                        echo 'password valid';
-
                         $password = trim($password);
+
+                        $password_hashed = password_hash($password, PASSWORD_DEFAULT);
 
                         $stmt = $connection->prepare("INSERT INTO users (email, password) VALUES (:email, :password)");
                         $affected_rows = $stmt->execute([
                             ':email' => $email,
-                            ':password' => $password
+                            ':password' => $password_hashed
                         ]);
                         if ($affected_rows = 1) {
-
-                            echo 'user added<br>';
 
                             $error = 10;
 
                             unset($connection);
                         } else {
-                            $error = 5;
 
-                            echo 'user not added<br>';
+                            $error = 5;
                         }
                     } else {
                         $error = 4;
@@ -110,8 +89,9 @@ unset($connection);
                 <label for="Email" class="form-label">Email:</label>
                 <input type="email" name="email" class="form-control" value="" minlength="6" required>
 
-                <label for="Password=" form-label">Password:</label>
-                <input type="password" name="password" class="form-control" value="" minlength="10" required placeholder="Minimum 10 characters">
+                <label for="Password" class="form-label">Password:</label>
+                <input type="password" name="password" id="password" class="form-control" value="" minlength="10" required placeholder="Minimum 10 characters">
+                <input type="checkbox" name="checkbox" id="show-pw" onclick="showPass()"> Show password<br>
 
                 <button type="submit" class="btn btn-primary mt-4">Register</button>
 
@@ -142,7 +122,7 @@ unset($connection);
                             echo '<p class="warning">An error has occured. Please try again or contact the webmaster.</p>';
                             break;
                         case 10:
-                            echo '<p class"success">You are registered. Please login now.</p>';
+                            echo '<p class="success">You are registered. Please login now.</p>';
                             break;
                     }
                 }
