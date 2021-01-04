@@ -1,6 +1,7 @@
 <?php
 
 $page = 'login';
+$title = 'Login';
 
 require_once 'inc/header.inc.php';
 

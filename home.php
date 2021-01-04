@@ -1,6 +1,7 @@
 <?php
 
 $page = 'home';
+$title = 'Home';
 
 include_once 'inc/header.inc.php';
 

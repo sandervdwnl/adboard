@@ -4,7 +4,9 @@
 .warning {
     background-color: yellow;
 }
-
+#browse {
+    padding-left: 0!important;
+}
 
 /**
 // X-Small devices (portrait phones, less than 576px)

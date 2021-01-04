@@ -1,5 +1,6 @@
 <?php
 $page = 'register';
+$title = 'Register';
 
 require_once 'inc/header.inc.php';
 
