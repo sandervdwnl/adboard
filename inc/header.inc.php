@@ -46,6 +46,24 @@ session_start();
                                                 } ?>" href="new_ad.php">New Ad</a>
                         </li>
                     <?php } ?>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($page = 'adboard') {
+                                                echo 'active';
+                                            } ?>" href="adboard.php">Adboard</a>
+                    </li>
+                    <?php  ?>
+                    <?php if (isset($_SESSION['user_email'])) { ?>
+                        <li class="nav-item">
+                            <a class="nav-link <?php if ($page = 'my_ads') {
+                                                    echo 'active';
+                                                } ?>" href="my_ads.php">My Ads</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link <?php if ($page = 'adboard') {
+                                                    echo 'active';
+                                                } ?>" href="adboard.php">Adboard</a>
+                        </li>
+                    <?php } ?>
                     <?php if (!isset($_SESSION['user_email'])) { ?>
                         <li class="nav-item">
                             <a class="nav-link <?php if ($page = 'login') {

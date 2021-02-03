@@ -1,3 +1,10 @@
+body {
+    background-color: #eee2dc!important;
+}
+.container-fluid {
+    max-width: 1900px;
+    padding: 25px;
+}
 .success {
     background-color: greenyellow;
 }
@@ -8,22 +15,47 @@
     padding-left: 0!important;
 }
 
-/**
-// X-Small devices (portrait phones, less than 576px)
-// No media query for `xs` since this is the default in Bootstrap
 
-// Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) { ... }
+/* CARDS */
 
-// Medium devices (tablets, 768px and up)
-@media (min-width: 768px) { ... }
+.card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+.card {
+    margin-top: 10px;
+}
+.card-body {
+    padding: 25px 20px!important;
+}
 
-// Large devices (desktops, 992px and up)
-@media (min-width: 992px) { ... }
 
-// X-Large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) { ... }
 
-// XX-Large devices (larger desktops, 1400px and up)
-@media (min-width: 1400px) { ... }
+
+
+
+/* X-Small devices (portrait phones, less than 576px)*/
+/* No media query for `xs` since this is the default in Bootstrap*/
+
+/* Small devices (landscape phones, 576px and up)*/
+/*@media (min-width: 576px) { ... }*/
+
+/* Medium devices (tablets, 768px and up)*/
+/*@media (min-width: 768px) { ... }*/
+
+/* Large devices (desktops, 992px and up)*/
+/*@media (min-width: 992px) { ... }*/
+
+/* X-Large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) { 
+}
+
+/* XX-Large devices (larger desktops, 1400px and up)*/
+@media (min-width: 1400px) { 
+    
+    .card-body {
+        padding: 25px 40px!important;
+    }
+ }
 

@@ -19,3 +19,4 @@ function clearFileUpload() {
 
     browseBtn.value = '';
 }
+
